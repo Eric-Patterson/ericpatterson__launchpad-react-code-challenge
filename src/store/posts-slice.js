@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { apiCallBegan } from "./api";
+import { apiCallBegan } from "./middleware/api";
 
-const slice = createSlice({
+const postsSlice = createSlice({
   name: "posts",
   initialState: {
     list: [],
@@ -9,24 +9,14 @@ const slice = createSlice({
   },
 
   reducers: {
-    postsRequested: (posts, action) => {
-      posts.loading = true;
-    },
-
-    postsReceived: (posts, action) => {
-      posts.list = action.payload;
-      posts.loading = false;
-    },
-
-    postsRequestFailed: (posts, action) => {
-      posts.loading = false;
+    postsReceived: (state, action) => {
+      state.list = action.payload;
+      state.loading = false;
     },
   },
 });
 
-export default slice.reducer;
-
-const { postsRequested, postsReceived, postsRequestFailed } = slice.actions;
+const { postsReceived } = postsSlice.actions;
 
 const url = "/posts";
 
@@ -34,9 +24,10 @@ export const loadposts = () => (dispatch) => {
   return dispatch(
     apiCallBegan({
       url,
-      onStart: postsRequested.type,
       onSuccess: postsReceived.type,
-      onError: postsRequestFailed.type,
     })
   );
 };
+
+export default postsSlice;
+// export default postsSlice.reducer;

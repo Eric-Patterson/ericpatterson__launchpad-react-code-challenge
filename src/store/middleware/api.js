@@ -1,37 +1,20 @@
 import axios from "axios";
-
-import * as actions from "../api";
+import { createAction } from "@reduxjs/toolkit";
+export const apiCallBegan = createAction("api/callBegan");
 
 const api =
   ({ dispatch }) =>
   (next) =>
   async (action) => {
-    if (action.type !== actions.apiCallBegan.type) return next(action);
-
-    const { url, method, data, onStart, onSuccess, onError } = action.payload;
-
-    if (onStart) dispatch({ type: onStart });
-
-    next(action);
-
+    if (action.type !== apiCallBegan.type) return next(action);
+    const { onSuccess } = action.payload;
     try {
       const response = await axios.request({
-        baseURL:
-          "https://jsonplaceholder.typicode.com/posts? _start=0&_limit=20",
-        url,
-        method,
-        data,
+        url: "https://jsonplaceholder.typicode.com/posts? _start=0&_limit=20",
       });
-      // General
-      dispatch(actions.apiCallSucess(response.data));
-      // Specific
-      if (onSuccess) dispatch({ type: onSuccess, payload: response.data });
+      dispatch({ type: onSuccess, payload: response.data });
     } catch (error) {
-      // General
-      dispatch(actions.apiCallFailed(error.message));
-      // Specific
-      if (onError) dispatch({ type: onError, payload: error.message });
+      console.log(error);
     }
   };
-
 export default api;
