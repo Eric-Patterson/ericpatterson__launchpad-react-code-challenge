@@ -1,10 +1,10 @@
-import PostData from "../Home/PostData";
+// import PostData from "../Home/PostData";
+import Home from "../Home/Home";
 
 function HomePage() {
   return (
     <div>
-      {/* <h1>here</h1> */}
-      <PostData />
+      <Home />
     </div>
   );
 }
