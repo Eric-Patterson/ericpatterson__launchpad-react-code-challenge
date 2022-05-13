@@ -1,7 +1,20 @@
 import Modal from "../UI/Modal";
 import Button from "../UI/Button";
+import { useDispatch } from "react-redux";
+import { postActions } from "../../store/posts-slice";
 
 function AddInfo(props) {
+  const dispatch = useDispatch();
+
+  const addItemHandler = () => {
+    dispatch(
+      postActions.addItemToApi({
+        id: 44,
+        title: "something",
+      })
+    );
+  };
+
   return (
     <Modal onClose={props.onClose}>
       <div>testing add info</div>
@@ -21,7 +34,7 @@ function AddInfo(props) {
         </div>
       </form>
       <Button onClick={props.onClose}>Close</Button>
-      <Button>Add New Info</Button>
+      <Button onClick={addItemHandler}>Add New Info</Button>
     </Modal>
   );
 }

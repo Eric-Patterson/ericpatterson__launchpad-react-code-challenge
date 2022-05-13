@@ -12,22 +12,25 @@ const postsSlice = createSlice({
     postsReceived: (state, action) => {
       state.list = action.payload;
       state.loading = false;
+      console.log("postsReceived");
+    },
+    addItemToApi(state, action) {
+      state.list.push(action.payload);
+      console.log("sent items");
     },
   },
 });
 
 const { postsReceived } = postsSlice.actions;
 
-const url = "/posts";
-
 export const loadposts = () => (dispatch) => {
   return dispatch(
     apiCallBegan({
-      url,
       onSuccess: postsReceived.type,
     })
   );
 };
 
+export const postActions = postsSlice.actions;
+
 export default postsSlice;
-// export default postsSlice.reducer;

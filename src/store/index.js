@@ -1,6 +1,6 @@
 import { configureStore } from "@reduxjs/toolkit";
+import { api } from "./middleware/api";
 import postsSlice from "./posts-slice";
-import api from "./middleware/api";
 
 function store() {
   return configureStore({

@@ -2,7 +2,7 @@ import axios from "axios";
 import { createAction } from "@reduxjs/toolkit";
 export const apiCallBegan = createAction("api/callBegan");
 
-const api =
+export const api =
   ({ dispatch }) =>
   (next) =>
   async (action) => {
@@ -17,4 +17,3 @@ const api =
       console.log(error);
     }
   };
-export default api;
