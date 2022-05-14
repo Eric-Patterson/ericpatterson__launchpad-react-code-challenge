@@ -1,40 +1,69 @@
 import Modal from "../UI/Modal";
 import Button from "../UI/Button";
-import { useDispatch } from "react-redux";
-import { postActions } from "../../store/posts-slice";
+import { useEffect, useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { sendPostData } from "../../store/actions";
+import { postPassgengers } from "../../store/selectors";
+
+// import { postActions } from "../../store/posts-slice";
 
 function AddInfo(props) {
-  const dispatch = useDispatch();
+  // const titleRef = useRef();
+  // const bodyRef = useRef();
+  // const userIdRef = useRef();
 
-  const addItemHandler = () => {
+  const dispatch = useDispatch();
+  const postData = useSelector(postPassgengers);
+
+  // useEffect(() => {
+  //   dispatch(sendPostData());
+  // }, [dispatch]);
+
+  const addItemHandler = (e) => {
+    e.preventDefault();
     dispatch(
-      postActions.addItemToApi({
-        id: 44,
-        title: "something",
+      sendPostData({
+        userId: e.target.userId.value,
+        title: e.target.title.value,
+        body: e.target.body.value,
       })
     );
   };
+
+  // const { title, price, id } = props.item;
+
+  // const addItemHandler = () => {
+  //   dispatch(
+  //     postActions.addItemToCart({
+  //       id: Math.random(),
+  //       title: "something",
+  //       price: "44  ",
+  //     })
+  //   );
+  // };
 
   return (
     <Modal onClose={props.onClose}>
       <div>testing add info</div>
       {/* react form with title, body, userId */}
-      <form>
+      <form onSubmit={addItemHandler}>
         <div>
-          <label>Title</label>
-          <input type="text" />
+          <label htmlFor="title">Title</label>
+          <input name="title" id="title" type="text" />
         </div>
         <div>
-          <label>Body</label>
-          <input type="text" />
+          <label htmlFor="body">Body</label>
+          <input name="body" id="body" type="text" />
         </div>
         <div>
-          <label>User Id</label>
-          <input type="text" />
+          <label htmlFor="userId">User Id</label>
+          <input name="userId" id="userId" type="number" />
         </div>
+        <Button>Add New Info</Button>
       </form>
       <Button onClick={props.onClose}>Close</Button>
-      <Button onClick={addItemHandler}>Add New Info</Button>
+
+      {/* <Button onClick={addItemHandler}>Add New Info</Button> */}
     </Modal>
   );
 }
