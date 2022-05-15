@@ -1,7 +1,9 @@
+import Universities from "../Universities/Universities";
+
 function UniversitiesPage() {
   return (
     <div>
-      <h1>UniversitiesPage</h1>
+      <Universities />
     </div>
   );
 }
