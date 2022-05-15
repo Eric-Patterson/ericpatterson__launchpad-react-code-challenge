@@ -4,8 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { editPostData } from "../../store/actions";
 import { getDataSelector } from "../../store/selectors";
 
-// import { postActions } from "../../store/posts-slice";
-
 function EditInfo(props) {
   const dispatch = useDispatch();
 

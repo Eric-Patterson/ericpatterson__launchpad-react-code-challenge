@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getUniversityData } from "../../store/actions";
 import { getUniversityDataSelector } from "../../store/selectors";
 
 import { getCountryData } from "../../store/actions";
 import { getCountryDataSelector } from "../../store/selectors";
-
-// let isInitialRender = true;
 
 function Universities() {
   const dispatch = useDispatch();
@@ -30,32 +28,6 @@ function Universities() {
       })
     );
   };
-  // console.log(selectedCountry);
-
-  // useEffect(() => {
-  //   if (isInitialRender) {
-  //     isInitialRender = false;
-  //     return;
-  //   }
-  //   dispatch(getCountryData());
-  //   dispatch(
-  //     getUniversityData({
-  //       country: selectedCountry,
-  //     })
-  //   );
-  // }, [dispatch, selectedCountry]);
-
-  // useEffect(() => {
-  //   dispatch(getUniversityData(selectedCountry));
-  // }, [dispatch]);
-  // useEffect(() => {
-  //   dispatch(
-  //     getUniversityData({
-  //       country: selectedCountry,
-  //     })
-  //   );
-  // }, [dispatch]);
-
   return (
     <div>
       <form>

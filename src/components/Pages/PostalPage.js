@@ -1,7 +1,9 @@
+import Postal from "../Postal/Postal";
+
 function PostalPage() {
   return (
     <div>
-      <h1>PostalPage</h1>
+      <Postal />
     </div>
   );
 }
