@@ -12,22 +12,23 @@ function EditInfo(props) {
   const passengers = useSelector(getPassengers);
   // -1 due to array starting at 0
   let postNumber = passengers[props.title - 1];
-  // const addItemHandler = (e) => {
-  //   e.preventDefault();
-  //   dispatch(
-  //     editPostData({
-  //       userId: e.target.userId.value,
-  //       title: e.target.title.value,
-  //       body: e.target.body.value,
-  //     })
-  //   );
-  // };
+  console.log(postNumber.id);
+  const editItemHandler = (e) => {
+    e.preventDefault();
+    dispatch(
+      editPostData({
+        id: postNumber.id,
+        userId: e.target.userId.value,
+        title: e.target.title.value,
+        body: e.target.body.value,
+      })
+    );
+  };
 
   return (
     <Modal onClose={props.onClose}>
       <div>testing add info</div>
-      {/* <form onSubmit={addItemHandler}> */}
-      <form>
+      <form onSubmit={editItemHandler}>
         <div>
           <label htmlFor="title">Title</label>
           <input
@@ -52,7 +53,7 @@ function EditInfo(props) {
             name="userId"
             id="userId"
             type="number"
-            defaultValue={postNumber.id}
+            defaultValue={postNumber.userId}
           />
         </div>
         <Button>Edit Info</Button>

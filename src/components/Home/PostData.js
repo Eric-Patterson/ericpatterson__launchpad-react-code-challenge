@@ -47,12 +47,6 @@ const PostData = (props) => {
                 props.showEditCart();
                 props.sendToChild(post.id);
               }}
-              // onClick={props.showEditCart}
-              // testing={test}
-              // onClick={}
-              // title={post.id}
-              // number={post.number}
-              // body={post.body}
             >
               Edit
             </Button>
