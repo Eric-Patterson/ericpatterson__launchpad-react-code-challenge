@@ -50,7 +50,14 @@ const PostData = (props) => {
             >
               Edit
             </Button>
-            <Button>Delete</Button>
+            <Button
+              onClick={() => {
+                props.showDeleteCart();
+                props.sendToChild(post.id);
+              }}
+            >
+              Delete
+            </Button>
           </div>
         ))}
     </div>
