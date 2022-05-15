@@ -1,7 +1,7 @@
 import axios from "axios";
 
 // get request for post data
-export const fetchPassengers = () => {
+export const getPostData = () => {
   return (dispatch) => {
     axios
       .get("https://jsonplaceholder.typicode.com/posts?_start=0&_limit=20")
@@ -13,6 +13,7 @@ export const fetchPassengers = () => {
       });
   };
 };
+
 // post data
 export const sendPostData = ({ title, body, userId }) => {
   return (dispatch) => {
@@ -51,7 +52,7 @@ export const editPostData = ({ id, title, body, userId }) => {
   };
 };
 
-// delete with with axios
+// delete data from api
 export const deletePostData = (id) => {
   return (dispatch) => {
     axios
@@ -65,6 +66,19 @@ export const deletePostData = (id) => {
       });
   };
 };
+
+// export const getUniversityData = () => {
+//   return (dispatch) => {
+//     axios
+//       .get("http://universities.hipolabs.com/search?country=Canada")
+//       .then((res) => {
+//         dispatch({
+//           type: "FETCH_UNIVERSITIES",
+//           payload: res.data,
+//         });
+//       });
+//   };
+// };
 
 // working post data
 // // post data using axios

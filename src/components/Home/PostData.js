@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchPassengers } from "../../store/actions";
-import { getPassengers } from "../../store/selectors";
+import { getPostData } from "../../store/actions";
+import { getDataSelector } from "../../store/selectors";
 import Button from "../UI/Button";
 import { useState } from "react";
 
@@ -10,10 +10,10 @@ const PostData = (props) => {
   const [searchTerm, setSearchTerm] = useState("");
 
   const dispatch = useDispatch();
-  const passengers = useSelector(getPassengers);
+  const passengers = useSelector(getDataSelector);
 
   useEffect(() => {
-    dispatch(fetchPassengers());
+    dispatch(getPostData());
   }, [dispatch]);
 
   return (

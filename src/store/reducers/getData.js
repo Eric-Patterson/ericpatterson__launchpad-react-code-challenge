@@ -2,7 +2,7 @@ const initialState = {
   passengers: [],
 };
 
-const passengerReducer = (state = initialState, action) => {
+const getData = (state = initialState, action) => {
   switch (action.type) {
     case "FETCH_PASSENGERS":
       return {
@@ -14,4 +14,4 @@ const passengerReducer = (state = initialState, action) => {
   }
 };
 
-export default passengerReducer;
+export default getData;

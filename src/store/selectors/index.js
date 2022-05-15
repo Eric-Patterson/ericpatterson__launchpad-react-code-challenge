@@ -1,1 +1,1 @@
-export * from "./passengerSelectors";
+export * from "./getDataSelector";

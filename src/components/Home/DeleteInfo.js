@@ -2,14 +2,14 @@ import Modal from "../UI/Modal";
 import Button from "../UI/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { editPostData } from "../../store/actions";
-import { getPassengers } from "../../store/selectors";
+import { getDataSelector } from "../../store/selectors";
 
 // import { postActions } from "../../store/posts-slice";
 
 function DeleteInfo(props) {
   const dispatch = useDispatch();
 
-  const passengers = useSelector(getPassengers);
+  const passengers = useSelector(getDataSelector);
   // -1 due to array starting at 0
   let postNumber = passengers[props.title - 1];
   console.log(postNumber.id);
