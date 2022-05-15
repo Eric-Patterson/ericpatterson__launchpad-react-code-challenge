@@ -6,26 +6,64 @@ import { getUniversityDataSelector } from "../../store/selectors";
 import { getCountryData } from "../../store/actions";
 import { getCountryDataSelector } from "../../store/selectors";
 
+// let isInitialRender = true;
+
 function Universities() {
   const dispatch = useDispatch();
 
-  const universities = useSelector(getUniversityDataSelector);
-
   const countries = useSelector(getCountryDataSelector);
+  const universities = useSelector(getUniversityDataSelector);
 
   useEffect(() => {
     dispatch(getCountryData());
-    dispatch(getUniversityData());
-  }, [dispatch]);
+    dispatch(
+      getUniversityData({
+        country: "Canada",
+      })
+    );
+  }, []);
+
+  const countryChangeHandler = (e) => {
+    dispatch(
+      getUniversityData({
+        country: e.target.value,
+      })
+    );
+  };
+  // console.log(selectedCountry);
 
   // useEffect(() => {
-  //   dispatch(getUniversityData());
+  //   if (isInitialRender) {
+  //     isInitialRender = false;
+  //     return;
+  //   }
+  //   dispatch(getCountryData());
+  //   dispatch(
+  //     getUniversityData({
+  //       country: selectedCountry,
+  //     })
+  //   );
+  // }, [dispatch, selectedCountry]);
+
+  // useEffect(() => {
+  //   dispatch(getUniversityData(selectedCountry));
+  // }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(
+  //     getUniversityData({
+  //       country: selectedCountry,
+  //     })
+  //   );
   // }, [dispatch]);
 
   return (
     <div>
       <form>
-        <select>
+        <select
+          onChange={(e) => {
+            countryChangeHandler(e);
+          }}
+        >
           <option value="">Select a Country</option>
           {countries.map((country, index) => (
             <option key={index} value={country.id}>
