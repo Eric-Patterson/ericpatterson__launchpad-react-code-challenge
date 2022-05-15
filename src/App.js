@@ -7,7 +7,8 @@ import Navbar from "./components/NavBar/NavBar";
 // Page Imports
 import HomePage from "./components/Pages/HomePage";
 import Universities from "./components/Pages/UniversitiesPage";
-import Postal from "./components/Pages/PostalPage";
+// import Postal from "./components/Pages/PostalPage";
+import Postal from "./components/Postal/Postal";
 
 function App() {
   return (

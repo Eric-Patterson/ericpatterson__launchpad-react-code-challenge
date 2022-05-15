@@ -10,6 +10,7 @@ function EditInfo(props) {
   const passengers = useSelector(getDataSelector);
   // -1 due to array starting at 0
   let postNumber = passengers[props.title - 1];
+
   console.log(postNumber.id);
   const editItemHandler = (e) => {
     e.preventDefault();

@@ -4,6 +4,7 @@ import postData from "./postData";
 import editData from "./editData";
 import getUniversityData from "./getUniversityData";
 import getCountryData from "./getCountryData";
+import getPostalData from "./getPostalData";
 
 const reducer = combineReducers({
   getData,
@@ -11,6 +12,7 @@ const reducer = combineReducers({
   editData,
   getUniversityData,
   getCountryData,
+  getPostalData,
 });
 
 export default reducer;
