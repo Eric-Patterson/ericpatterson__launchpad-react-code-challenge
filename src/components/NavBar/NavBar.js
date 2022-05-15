@@ -3,8 +3,6 @@ import { Link } from "react-router-dom";
 function Navbar(props) {
   return (
     <div>
-      {/* <h1>Navbar</h1> */}
-
       <ul>
         <li>
           <Link to="/">Home</Link>

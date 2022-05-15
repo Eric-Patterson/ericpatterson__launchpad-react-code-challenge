@@ -4,7 +4,7 @@ import axios from "axios";
 export const fetchPassengers = () => {
   return (dispatch) => {
     axios
-      .get("https://jsonplaceholder.typicode.com/posts? _start=0&_limit=20")
+      .get("https://jsonplaceholder.typicode.com/posts?_start=0&_limit=20")
       .then((res) => {
         dispatch({
           type: "FETCH_PASSENGERS",
@@ -13,7 +13,7 @@ export const fetchPassengers = () => {
       });
   };
 };
-// post data using axios
+// post data
 export const sendPostData = ({ title, body, userId }) => {
   return (dispatch) => {
     axios
@@ -25,6 +25,25 @@ export const sendPostData = ({ title, body, userId }) => {
       .then((res) => {
         dispatch({
           type: "POST_DATA",
+          payload: res.data,
+        });
+        console.log(res.data);
+      });
+  };
+};
+
+// EDIT(PUT) data
+export const editPostData = ({ id, title, body, userId }) => {
+  return (dispatch) => {
+    axios
+      .put(`https://jsonplaceholder.typicode.com/posts/${id}`, {
+        title,
+        body,
+        userId,
+      })
+      .then((res) => {
+        dispatch({
+          type: "EDIT_DATA",
           payload: res.data,
         });
         console.log(res.data);

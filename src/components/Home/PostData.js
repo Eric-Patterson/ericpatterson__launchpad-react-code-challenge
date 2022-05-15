@@ -16,8 +16,6 @@ const PostData = (props) => {
     dispatch(fetchPassengers());
   }, [dispatch]);
 
-  console.log(passengers, "total");
-
   return (
     <div>
       <h1>Posts</h1>
@@ -44,7 +42,14 @@ const PostData = (props) => {
             <p>Post Number: {post.id}</p>
             <p>Description: {post.body}</p>
             <Button onClick={props.onShowCart}>Add</Button>
-            <Button>Edit</Button>
+            <Button
+              onClick={() => {
+                props.showEditCart();
+                props.sendToChild(post.id);
+              }}
+            >
+              Edit
+            </Button>
             <Button>Delete</Button>
           </div>
         ))}

@@ -1,24 +1,12 @@
 import Modal from "../UI/Modal";
 import Button from "../UI/Button";
-import { useEffect, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { sendPostData } from "../../store/actions";
-import { postPassgengers } from "../../store/selectors";
 
 // import { postActions } from "../../store/posts-slice";
 
 function AddInfo(props) {
-  // const titleRef = useRef();
-  // const bodyRef = useRef();
-  // const userIdRef = useRef();
-
   const dispatch = useDispatch();
-  const postData = useSelector(postPassgengers);
-
-  // useEffect(() => {
-  //   dispatch(sendPostData());
-  // }, [dispatch]);
-
   const addItemHandler = (e) => {
     e.preventDefault();
     dispatch(
@@ -29,18 +17,6 @@ function AddInfo(props) {
       })
     );
   };
-
-  // const { title, price, id } = props.item;
-
-  // const addItemHandler = () => {
-  //   dispatch(
-  //     postActions.addItemToCart({
-  //       id: Math.random(),
-  //       title: "something",
-  //       price: "44  ",
-  //     })
-  //   );
-  // };
 
   return (
     <Modal onClose={props.onClose}>
