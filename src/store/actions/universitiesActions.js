@@ -10,7 +10,6 @@ export const getUniversityData = ({ country }) => {
           type: "FETCH_UNIVERSITIES",
           payload: res.data,
         });
-        console.log(res.data);
       });
   };
 };
