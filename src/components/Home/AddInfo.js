@@ -3,8 +3,6 @@ import Button from "../UI/Button";
 import { useDispatch } from "react-redux";
 import { sendPostData } from "../../store/actions";
 
-// import { postActions } from "../../store/posts-slice";
-
 function AddInfo(props) {
   const dispatch = useDispatch();
   const addItemHandler = (e) => {
@@ -38,8 +36,7 @@ function AddInfo(props) {
         <Button>Add New Info</Button>
       </form>
       <Button onClick={props.onClose}>Close</Button>
-
-      {/* <Button onClick={addItemHandler}>Add New Info</Button> */}
+      <Button onClick={addItemHandler}>Add New Info</Button>
     </Modal>
   );
 }
