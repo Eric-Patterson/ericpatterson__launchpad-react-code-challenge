@@ -51,6 +51,21 @@ export const editPostData = ({ id, title, body, userId }) => {
   };
 };
 
+// delete with with axios
+export const deletePostData = (id) => {
+  return (dispatch) => {
+    axios
+      .delete(`https://jsonplaceholder.typicode.com/posts/${id}`)
+      .then((res) => {
+        dispatch({
+          type: "DELETE_DATA",
+          payload: res.data,
+        });
+        console.log(res.data);
+      });
+  };
+};
+
 // working post data
 // // post data using axios
 // export const sendPostData = () => {
