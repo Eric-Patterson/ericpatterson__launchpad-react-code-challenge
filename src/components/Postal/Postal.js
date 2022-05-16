@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
 import Button from "../UI/Button";
-
 import { getPostalDataSelector } from "../../store/selectors";
 import { getPostalData } from "../../store/actions";
+
+import classes from "./Postal.module.css";
 
 // needed an initialRender. Might be a better method. Could not access the postal obejct in the first render.
 let isInitialRender = true;
@@ -35,7 +35,7 @@ function Postal() {
   }, []);
 
   return (
-    <div>
+    <div className={classes.postalContainer}>
       <form onSubmit={postalHandler}>
         <label htmlFor="postalCode">Postal Code</label>
         <input
@@ -47,12 +47,22 @@ function Postal() {
         <Button> Search Postal Code</Button>
       </form>
       {!isInitialRender && (
-        <div>
-          <p>{postal.country}</p>
-          <p>{postal["post code"]}</p>
-          <p>{postal.places[0].state}</p>
-          <p>{postal.places[0].longitude}</p>
-          <p>{postal.places[0].latitude}</p>
+        <div className={classes.postalInfo}>
+          <p>
+            <b>Country:</b> {postal.country}
+          </p>
+          <p>
+            <b>Postal:</b> Code: {postal["post code"]}
+          </p>
+          <p>
+            <b>State:</b> {postal.places[0].state}
+          </p>
+          <p>
+            <b>Long:</b> {postal.places[0].longitude}
+          </p>
+          <p>
+            <b>Lat:</b> {postal.places[0].latitude}
+          </p>
         </div>
       )}
     </div>
