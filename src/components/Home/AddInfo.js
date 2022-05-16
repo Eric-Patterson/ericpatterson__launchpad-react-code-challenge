@@ -3,6 +3,8 @@ import Button from "../UI/Button";
 import { useDispatch } from "react-redux";
 import { sendPostData } from "../../store/actions";
 
+import classes from "./AddInfo.module.css";
+
 function AddInfo(props) {
   const dispatch = useDispatch();
   const addItemHandler = (e) => {
@@ -18,25 +20,25 @@ function AddInfo(props) {
 
   return (
     <Modal onClose={props.onClose}>
-      <div>testing add info</div>
-      {/* react form with title, body, userId */}
-      <form onSubmit={addItemHandler}>
-        <div>
+      <div className={classes.modalContainer}>
+        <h1>Add new information</h1>
+        {/* react form with title, body, userId */}
+        <form onSubmit={addItemHandler} className={classes.addForm}>
           <label htmlFor="title">Title</label>
           <input name="title" id="title" type="text" />
-        </div>
-        <div>
+
           <label htmlFor="body">Body</label>
           <input name="body" id="body" type="text" />
-        </div>
-        <div>
+
           <label htmlFor="userId">User Id</label>
           <input name="userId" id="userId" type="number" />
-        </div>
-        <Button>Add New Info</Button>
-      </form>
-      <Button onClick={props.onClose}>Close</Button>
-      <Button onClick={addItemHandler}>Add New Info</Button>
+
+          <div className={classes.btnContainer}>
+            <Button>Add New Info</Button>
+            <Button onClick={props.onClose}>Close</Button>
+          </div>
+        </form>
+      </div>
     </Modal>
   );
 }

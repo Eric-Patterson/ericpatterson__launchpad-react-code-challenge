@@ -1,0 +1,14 @@
+.deleteContainer h1{
+    text-align: center;
+    font-size: 1.5em;
+    padding: 0.5em 0.8em 0.2em 0.8em;
+  }
+  .deleteContainer{
+      min-height: 200px;
+  }
+  .btnContainer{
+    display: flex;
+    justify-content: space-between;
+    padding: 1em;
+    margin-top: 5em;
+  }

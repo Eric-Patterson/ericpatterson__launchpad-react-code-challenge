@@ -10,7 +10,9 @@ function Universities() {
   const dispatch = useDispatch();
 
   const countries = useSelector(getCountryDataSelector);
+  console.log(countries);
   const universities = useSelector(getUniversityDataSelector);
+  console.log(universities);
 
   useEffect(() => {
     dispatch(getCountryData());

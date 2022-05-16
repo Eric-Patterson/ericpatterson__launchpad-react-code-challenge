@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { editPostData } from "../../store/actions";
 import { getDataSelector } from "../../store/selectors";
 
+import classes from "./EditInfo.module.css";
+
 function EditInfo(props) {
   const dispatch = useDispatch();
 
@@ -26,9 +28,9 @@ function EditInfo(props) {
 
   return (
     <Modal onClose={props.onClose}>
-      <div>testing add info</div>
-      <form onSubmit={editItemHandler}>
-        <div>
+      <div className={classes.modalContainer}>
+        <h1>Edit Information</h1>
+        <form onSubmit={editItemHandler} className={classes.addForm}>
           <label htmlFor="title">Title</label>
           <input
             name="title"
@@ -36,8 +38,7 @@ function EditInfo(props) {
             type="text"
             defaultValue={postNumber.title}
           />
-        </div>
-        <div>
+
           <label htmlFor="body">Body</label>
           <input
             name="body"
@@ -45,8 +46,7 @@ function EditInfo(props) {
             type="text"
             defaultValue={postNumber.body}
           />
-        </div>
-        <div>
+
           <label htmlFor="userId">User Id</label>
           <input
             name="userId"
@@ -54,10 +54,12 @@ function EditInfo(props) {
             type="number"
             defaultValue={postNumber.userId}
           />
-        </div>
-        <Button>Edit Info</Button>
-      </form>
-      <Button onClick={props.onClose}>Close</Button>
+          <div className={classes.btnContainer}>
+            <Button>Edit Info</Button>
+            <Button onClick={props.onClose}>Close</Button>
+          </div>
+        </form>
+      </div>
     </Modal>
   );
 }

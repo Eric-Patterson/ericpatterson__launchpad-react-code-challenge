@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { editPostData } from "../../store/actions";
 import { getDataSelector } from "../../store/selectors";
 
-// import { postActions } from "../../store/posts-slice";
+import classes from "./DeleteInfo.module.css";
 
 function DeleteInfo(props) {
   const dispatch = useDispatch();
@@ -24,11 +24,15 @@ function DeleteInfo(props) {
 
   return (
     <Modal onClose={props.onClose}>
-      <div>Do you want to delete this post?</div>
-      <form onSubmit={deletePostData}>
-        <Button>Delete</Button>
-      </form>
-      <Button onClick={props.onClose}>Close</Button>
+      <div className={classes.deleteContainer}>
+        <h1>Do you want to delete this post?</h1>
+        <form onSubmit={deletePostData}>
+          <div className={classes.btnContainer}>
+            <Button>Delete</Button>
+            <Button onClick={props.onClose}>Close</Button>
+          </div>
+        </form>
+      </div>
     </Modal>
   );
 }

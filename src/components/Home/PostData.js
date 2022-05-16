@@ -20,8 +20,8 @@ const PostData = (props) => {
 
   return (
     <main>
-      <div>
-        <h1>Posts</h1>
+      <div className={classes.searchContainer}>
+        <label> Search: </label>
         <input
           type="text"
           placeholder="Search by ID"
@@ -45,8 +45,8 @@ const PostData = (props) => {
             <div key={post.id} className={classes.posts}>
               <h1>#{post.id}</h1>
               <hr />
-              <h2>Title: {post.title}</h2>
-              <p>Description: {post.body}</p>
+              <h2>{post.title}</h2>
+              <p>{post.body}</p>
               <div className={classes.buttonContainer}>
                 <Button onClick={props.onShowCart}>Add</Button>
                 <Button
