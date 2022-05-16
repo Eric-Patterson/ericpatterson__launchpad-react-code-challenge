@@ -6,6 +6,8 @@ import { getUniversityDataSelector } from "../../store/selectors";
 import { getCountryData } from "../../store/actions";
 import { getCountryDataSelector } from "../../store/selectors";
 
+import classes from "./Universities.module.css";
+
 function Universities() {
   const dispatch = useDispatch();
 
@@ -31,31 +33,58 @@ function Universities() {
     );
   };
   return (
-    <div>
-      <form>
-        <select
-          onChange={(e) => {
-            countryChangeHandler(e);
-          }}
-        >
-          <option value="">Select a Country</option>
-          {countries.map((country, index) => (
-            <option key={index} value={country.id}>
-              {country.name}
-            </option>
-          ))}
-        </select>
-      </form>
-      <h1>Universities</h1>
-      {/* map over universities */}
-      {universities.map((university, index) => (
-        <div key={index}>
-          <h2>Country: {university.country}</h2>
-          <h2>Name: {university.name}</h2>
-          <h2>Website: {university.web_pages[0]}</h2>
-        </div>
-      ))}
-    </div>
+    <main>
+      <div className={classes.searchContainer}>
+        <form>
+          <label>Please select a country:</label>
+          <select
+            onChange={(e) => {
+              countryChangeHandler(e);
+            }}
+          >
+            {countries.map((country, index) => (
+              <option key={index} value={country.id}>
+                {country.name}
+              </option>
+            ))}
+          </select>
+        </form>
+      </div>
+      <div className={classes.universityContainer}>
+        {/* if content is empty put message, if not display data */}
+        {universities.length === 0 ? (
+          <h1>No Universities Available</h1>
+        ) : (
+          universities.map((university, index) => (
+            <div key={index} className={classes.singleUni}>
+              <h1>Country: {university.country}</h1>
+              <hr />
+              <p>
+                <b>Name:</b> {university.name}
+              </p>
+              <p>
+                <b>Website:</b>{" "}
+                <a href={university.web_pages[0]}>{university.name}</a>
+              </p>
+            </div>
+          ))
+        )}
+        {/* map over universities */}
+        {/* {universities.map((university, index) => (
+          <div key={index} className={classes.singleUni}>
+            <h1>Country: {university.country}</h1>
+            <hr />
+            <p>
+              <b>Name:</b> {university.name}
+            </p>
+            <p>
+              <b>Website:</b>{" "}
+              <a href={university.web_pages[0]}>{university.name}</a>
+            </p>
+          </div>
+        ))} */}
+      </div>
+    </main>
   );
 }
 
