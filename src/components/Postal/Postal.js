@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import Button from "../UI/Button";
@@ -13,6 +13,10 @@ function Postal() {
   const dispatch = useDispatch();
 
   const postal = useSelector(getPostalDataSelector);
+
+  useEffect(() => {
+    dispatch(getPostalData({ postalCode: "10000" }));
+  }, [dispatch, postal.postalCode]);
 
   const postalHandler = (e) => {
     e.preventDefault();

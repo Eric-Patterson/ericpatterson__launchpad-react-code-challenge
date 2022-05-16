@@ -5,62 +5,71 @@ import { getDataSelector } from "../../store/selectors";
 import Button from "../UI/Button";
 import { useState } from "react";
 
+import classes from "./PostData.module.css";
+
 const PostData = (props) => {
   // state for rearch
   const [searchTerm, setSearchTerm] = useState("");
 
   const dispatch = useDispatch();
-  const passengers = useSelector(getDataSelector);
+  const posts = useSelector(getDataSelector);
 
   useEffect(() => {
     dispatch(getPostData());
   }, [dispatch]);
 
   return (
-    <div>
-      <h1>Posts</h1>
-      <input
-        type="text"
-        placeholder="Search by ID"
-        onChange={(e) => {
-          setSearchTerm(e.target.value);
-        }}
-      />
+    <main>
+      <div>
+        <h1>Posts</h1>
+        <input
+          type="text"
+          placeholder="Search by ID"
+          onChange={(e) => {
+            setSearchTerm(e.target.value);
+          }}
+        />
+      </div>
       {/* filters the api first, then checks for number{id} and maps over the filtered data */}
-      {passengers
-        .filter((val) => {
-          if (searchTerm === "") {
-            return val;
-          } else if (val.id === parseInt(searchTerm, 10)) {
-            console.log(searchTerm);
-            return val;
-          }
-        })
-        .map((post) => (
-          <div key={post.id}>
-            <h2>Title: {post.title}</h2>
-            <p>Post Number: {post.id}</p>
-            <p>Description: {post.body}</p>
-            <Button onClick={props.onShowCart}>Add</Button>
-            <Button
-              onClick={() => {
-                props.showEditCart();
-                props.sendToChild(post.id);
-              }}
-            >
-              Edit
-            </Button>
-            <Button
-              onClick={() => {
-                props.showDeleteCart();
-                props.sendToChild(post.id);
-              }}
-            >
-              Delete
-            </Button>
-          </div>
-        ))}
-    </div>
+      <div className={classes.postContainer}>
+        {posts
+          .filter((val) => {
+            if (searchTerm === "") {
+              return val;
+            } else if (val.id === parseInt(searchTerm, 10)) {
+              console.log(searchTerm);
+              return val;
+            }
+          })
+          .map((post) => (
+            <div key={post.id} className={classes.posts}>
+              <h1>#{post.id}</h1>
+              <hr />
+              <h2>Title: {post.title}</h2>
+              <p>Description: {post.body}</p>
+              <div className={classes.buttonContainer}>
+                <Button onClick={props.onShowCart}>Add</Button>
+                <Button
+                  onClick={() => {
+                    props.showEditCart();
+                    props.sendToChild(post.id);
+                  }}
+                >
+                  Edit
+                </Button>
+                <Button
+                  onClick={() => {
+                    props.showDeleteCart();
+                    props.sendToChild(post.id);
+                  }}
+                >
+                  Delete
+                </Button>
+              </div>
+            </div>
+          ))}
+      </div>
+    </main>
   );
 };
 
